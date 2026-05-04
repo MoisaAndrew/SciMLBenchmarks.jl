@@ -5,6 +5,7 @@ author: Chris Rackauckas
 
 ```julia
 using OrdinaryDiffEq, DiffEqDevTools, Sundials, ParameterizedFunctions, Plots, ODEInterfaceDiffEq, LSODA
+using SciMLLogging
 gr()
 using LinearAlgebra, StaticArrays, RecursiveFactorization, Polyester, OrdinaryDiffEqCore
 
@@ -133,7 +134,7 @@ setups = [Dict(:alg=>Rosenbrock23()),
           Dict(:alg=>ROS34PW1a()),
           ]
 gr()
-wp = WorkPrecisionSet(probs,abstols,reltols,setups; verbose=false, dense=false,
+wp = WorkPrecisionSet(probs,abstols,reltols,setups; verbose=SciMLLogging.None(), dense=false,
                       save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 plot(wp)
 ```
@@ -149,7 +150,7 @@ setups = [Dict(:alg=>Rosenbrock23()),
           # Dict(:alg=>SDIRK2()), # Removed because it's bad
           Dict(:alg=>radau())]
 names = ["Rosenbrock23" "Rosenbrock23 Static" "Kvaerno3" "KenCarp4" "TRBDF2" "KenCarp3" "lsoda" "radau"]
-wp = WorkPrecisionSet(probs,abstols,reltols,setups;names=names, verbose=false, dense=false,
+wp = WorkPrecisionSet(probs,abstols,reltols,setups;names=names, verbose=SciMLLogging.None(), dense=false,
                       save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 plot(wp)
 ```
@@ -167,7 +168,7 @@ setups = [Dict(:alg=>Rosenbrock23()),
 ]
 names = ["Rosenbrock23" "Rosenbrock23 Static" "KenCarp5" "KenCarp4" "KenCarp4 Static" "KenCarp3" "ARKODE5" "ARKODE4" "ARKODE3"]
 wp = WorkPrecisionSet(probs,abstols,reltols,setups;
-                      names=names, verbose=false, dense=false,
+                      names=names, verbose=SciMLLogging.None(), dense=false,
                       save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 plot(wp)
 ```
@@ -186,7 +187,7 @@ setups = [Dict(:alg=>Rosenbrock23()),
           #Dict(:alg=>Exprb43()), #SingularException
           #Dict(:alg=>Exprb32()), #SingularException
 ]
-wp = WorkPrecisionSet(probs,abstols,reltols,setups; verbose=false, dense=false,
+wp = WorkPrecisionSet(probs,abstols,reltols,setups; verbose=SciMLLogging.None(), dense=false,
                       save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 plot(wp)
 ```
@@ -208,7 +209,7 @@ setups = [Dict(:alg=>Rosenbrock23()),
           Dict(:alg=>ROS34PW1a()),
           ]
 gr()
-wp = WorkPrecisionSet(probs,abstols,reltols,setups;error_estimate=:l2, verbose=false, dense=false,
+wp = WorkPrecisionSet(probs,abstols,reltols,setups;error_estimate=:l2, verbose=SciMLLogging.None(), dense=false,
                       save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 plot(wp)
 ```
@@ -223,7 +224,7 @@ setups = [Dict(:alg=>Rosenbrock23()),
     # Dict(:alg=>SDIRK2()), # Removed because it's bad
           Dict(:alg=>radau())]
 names = ["Rosenbrock23" "Rosenbrock23 Static" "Kvaerno3" "KenCarp4" "TRBDF2" "KenCarp3" "radau"]
-wp = WorkPrecisionSet(probs,abstols,reltols,setups;names=names, verbose=false, dense=false,
+wp = WorkPrecisionSet(probs,abstols,reltols,setups;names=names, verbose=SciMLLogging.None(), dense=false,
                       appxsol=test_sol,maxiters=Int(1e5),error_estimate=:l2,numruns=10)
 plot(wp)
 ```
@@ -242,7 +243,7 @@ setups = [Dict(:alg=>Rosenbrock23()),
           #Dict(:alg=>Exprb43()), #SingularException
           #Dict(:alg=>Exprb32()), #SingularException
 ]
-wp = WorkPrecisionSet(probs,abstols,reltols,setups;verbose=false,error_estimate=:l2,
+wp = WorkPrecisionSet(probs,abstols,reltols,setups;verbose=SciMLLogging.None(),error_estimate=:l2,
                       save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 plot(wp)
 ```
@@ -268,7 +269,7 @@ setups = [#Dict(:alg=>Rodas5()),
           Dict(:alg=>radau()),
           Dict(:alg=>RadauIIA5()),
 ]
-wp = WorkPrecisionSet(probs,abstols,reltols,setups; verbose=false, dense=false,
+wp = WorkPrecisionSet(probs,abstols,reltols,setups; verbose=SciMLLogging.None(), dense=false,
                       save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 plot(wp)
 ```
@@ -291,7 +292,7 @@ setups = [Dict(:alg=>Kvaerno4()),
           Dict(:alg=>ImplicitEulerBarycentricExtrapolation()),
           Dict(:alg=>ImplicitHairerWannerExtrapolation()),
           ]
-wp = WorkPrecisionSet(probs,abstols,reltols,setups; verbose=false, dense=false,
+wp = WorkPrecisionSet(probs,abstols,reltols,setups; verbose=SciMLLogging.None(), dense=false,
                       save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 plot(wp)
 ```
@@ -307,7 +308,7 @@ setups = [Dict(:alg=>Rodas4())
           Dict(:alg=>Rodas5P())
           Dict(:alg=>Rodas5P(), :prob_choice => 2)]
 names = ["Rodas4" "Rodas4 Static" "Rodas5" "Rodas5 Static" "Rodas5P" "Rodas5P Static"]
-wp = WorkPrecisionSet(probs,abstols,reltols,setups;names=names, verbose=false, dense=false,
+wp = WorkPrecisionSet(probs,abstols,reltols,setups;names=names, verbose=SciMLLogging.None(), dense=false,
                       save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 plot(wp)
 ```
@@ -343,7 +344,7 @@ setups = [
 solnames = ["CVODE_BDF","KenCarp4","Rodas4","Rodas4 Static","Rodas5P","Rodas5P Static","QNDF","lsoda","radau","seulex","ImplEulerExtpl (threaded)", "ImplEulerExtpl (non-threaded)",
            "ImplEulerBaryExtpl (threaded)","ImplEulerBaryExtpl (non-threaded)","ImplHWExtpl (threaded)","ImplHWExtpl (non-threaded)"]
 
-wp = WorkPrecisionSet(probs,abstols,reltols,setups; verbose=false, dense=false,
+wp = WorkPrecisionSet(probs,abstols,reltols,setups; verbose=SciMLLogging.None(), dense=false,
                       names = solnames,save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 
 plot(wp, title = "Implicit Methods: ROBER",legend=:outertopleft,size = (1000,500),

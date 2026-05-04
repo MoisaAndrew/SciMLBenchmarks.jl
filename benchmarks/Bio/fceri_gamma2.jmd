@@ -176,10 +176,10 @@ plot(wp; label = names)
 
 ```julia
 setups = [
-    Dict(:alg=>TRBDF2(autodiff = false)),
-    Dict(:alg=>QNDF(autodiff = false)),
-    Dict(:alg=>FBDF(autodiff = false)),
-    Dict(:alg=>KenCarp4(autodiff = false))
+    Dict(:alg=>TRBDF2(autodiff = AutoFiniteDiff())),
+    Dict(:alg=>QNDF(autodiff = AutoFiniteDiff())),
+    Dict(:alg=>FBDF(autodiff = AutoFiniteDiff())),
+    Dict(:alg=>KenCarp4(autodiff = AutoFiniteDiff()))
 ];
 ```
 
@@ -197,10 +197,10 @@ plot(wp; label = names)
 
 ```julia
 setups = [
-    Dict(:alg=>TRBDF2(linsolve = KrylovJL_GMRES(), autodiff = false)),
-    Dict(:alg=>QNDF(linsolve = KrylovJL_GMRES(), autodiff = false)),
-    Dict(:alg=>FBDF(linsolve = KrylovJL_GMRES(), autodiff = false)),
-    Dict(:alg=>KenCarp4(linsolve = KrylovJL_GMRES(), autodiff = false))
+    Dict(:alg=>TRBDF2(linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff())),
+    Dict(:alg=>QNDF(linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff())),
+    Dict(:alg=>FBDF(linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff())),
+    Dict(:alg=>KenCarp4(linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff()))
 ];
 ```
 
@@ -219,11 +219,11 @@ plot(wp; label = names)
 ```julia
 setups = [
     Dict(:alg=>TRBDF2(
-        linsolve = KrylovJL_GMRES(), autodiff = false, precs = incompletelu, concrete_jac = true)),
-    Dict(:alg=>QNDF(linsolve = KrylovJL_GMRES(), autodiff = false, precs = incompletelu, concrete_jac = true)),
-    Dict(:alg=>FBDF(linsolve = KrylovJL_GMRES(), autodiff = false, precs = incompletelu, concrete_jac = true)),
+        linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff(), precs = incompletelu, concrete_jac = true)),
+    Dict(:alg=>QNDF(linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff(), precs = incompletelu, concrete_jac = true)),
+    Dict(:alg=>FBDF(linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff(), precs = incompletelu, concrete_jac = true)),
     Dict(:alg=>KenCarp4(
-        linsolve = KrylovJL_GMRES(), autodiff = false, precs = incompletelu, concrete_jac = true))
+        linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff(), precs = incompletelu, concrete_jac = true))
 ];
 ```
 
@@ -243,10 +243,10 @@ We designate the solvers we wish to use.
 
 ```julia
 setups = [
-    Dict(:alg=>TRBDF2(linsolve = KLUFactorization(), autodiff = false)),
-    Dict(:alg=>QNDF(linsolve = KLUFactorization(), autodiff = false)),
-    Dict(:alg=>FBDF(linsolve = KLUFactorization(), autodiff = false)),
-    Dict(:alg=>KenCarp4(linsolve = KLUFactorization(), autodiff = false))
+    Dict(:alg=>TRBDF2(linsolve = KLUFactorization(), autodiff = AutoFiniteDiff())),
+    Dict(:alg=>QNDF(linsolve = KLUFactorization(), autodiff = AutoFiniteDiff())),
+    Dict(:alg=>FBDF(linsolve = KLUFactorization(), autodiff = AutoFiniteDiff())),
+    Dict(:alg=>KenCarp4(linsolve = KLUFactorization(), autodiff = AutoFiniteDiff()))
 ];
 ```
 
@@ -308,10 +308,10 @@ setups = [
         :alg=>CVODE_BDF(linear_solver = :GMRES, prec = precilu, psetup = psetupilu, prec_side = 1),
         :prob_choice => 2),
     Dict(
-        :alg=>QNDF(linsolve = KrylovJL_GMRES(), autodiff = false, precs = incompletelu, concrete_jac = true),
+        :alg=>QNDF(linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff(), precs = incompletelu, concrete_jac = true),
         :prob_choice => 3),
     Dict(
-        :alg=>FBDF(linsolve = KrylovJL_GMRES(), autodiff = false, precs = incompletelu, concrete_jac = true),
+        :alg=>FBDF(linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff(), precs = incompletelu, concrete_jac = true),
         :prob_choice => 3),
     Dict(:alg=>Tsit5())
 ];

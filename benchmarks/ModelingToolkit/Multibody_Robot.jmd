@@ -42,7 +42,7 @@ const tspan = (0.0, 4.0)
 ```julia
 function julia_multibody_timings(ssys)
     time_prob = @elapsed prob = ODEProblem(ssys, u0, tspan)
-    time_solve = @elapsed sol = solve(prob, Rodas5P(autodiff = false)); # With autodiff=true this takes over 150 seconds
+    time_solve = @elapsed sol = solve(prob, Rodas5P(autodiff = AutoFiniteDiff())); # With autodiff=AutoForwardDiff() this takes over 150 seconds
 
     tv = 0:0.01:4
     time_extract_data = @elapsed data = sol(tv,

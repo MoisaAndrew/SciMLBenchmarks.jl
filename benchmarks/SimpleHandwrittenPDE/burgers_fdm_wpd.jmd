@@ -71,7 +71,7 @@ Using an adaptive timestepping method to solve the system of ordinary differenti
 N = 128
 L = 1.0
 xs, prob = burgers(N, L)
-sol = solve(prob, AutoVern7(Rodas5(autodiff=false)); abstol=1e-14, reltol=1e-14, adaptive=true)
+sol = solve(prob, AutoVern7(Rodas5(autodiff=AutoFiniteDiff())); abstol=1e-14, reltol=1e-14, adaptive=true)
 
 test_sol = TestSolution(sol); # Reference solution for error estimation
 

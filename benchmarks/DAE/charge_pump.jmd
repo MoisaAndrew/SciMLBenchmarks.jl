@@ -277,7 +277,7 @@ crossing points (e.g., when $V_{in}(t)$ crosses $V_{T0} = 0.2\,$V).
 
 ```julia
 mtkprob = ODEProblem(sys, [], tspan)
-mtk_test = solve(mtkprob, Rodas5P(autodiff = false), abstol = 1e-4, reltol = 1e-4,
+mtk_test = solve(mtkprob, Rodas5P(autodiff = AutoFiniteDiff()), abstol = 1e-4, reltol = 1e-4,
                  tstops = disc_times, maxiters = Int(1e6), dt = 1e-15)
 println("Rodas5P on MTK-reduced system: retcode = $(mtk_test.retcode), ",
         "steps = $(length(mtk_test.t)), final t = $(mtk_test.t[end])")

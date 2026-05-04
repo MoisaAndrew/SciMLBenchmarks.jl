@@ -264,7 +264,7 @@ function TestBenchPreinsulated(; name, L = 1.0, dn = 0.05, t_layer = [0.0056, 0.
 end
 
 function compile_run_problem(sys;
-        solver = FBDF(; autodiff = true),
+        solver = FBDF(; autodiff = AutoForwardDiff()),
         duref = nothing)
     tspan = (0.0, 19 * 3600.0)
     t0 = time()

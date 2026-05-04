@@ -11,6 +11,7 @@ Fetch required packages
 using NonlinearSolve, LinearAlgebra, SparseArrays, DiffEqDevTools,
       CairoMakie, Symbolics, BenchmarkTools, PolyesterForwardDiff, LinearSolve, Sundials,
       Enzyme, SparseConnectivityTracer, DifferentiationInterface, SparseMatrixColorings
+using SciMLLogging
 import NLsolve, MINPACK, PETSc, RecursiveFactorization
 
 const RUS = RadiusUpdateSchemes;
@@ -628,7 +629,7 @@ function generate_wpset(prob, solvers)
     return WorkPrecisionSet(prob, abstols, reltols,
         getfield.(successful_solvers, :solver);
         names = getfield.(successful_solvers, :name), numruns = 10, error_estimate = :l∞,
-        maxiters = 1000, verbose = true),
+        maxiters = 1000, verbose = SciMLLogging.Standard()),
     successful_solvers
 end
 ```

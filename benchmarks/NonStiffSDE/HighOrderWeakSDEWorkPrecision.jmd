@@ -20,6 +20,7 @@ with a known analytical result $\mathbb{E}[X_1(t)^2] = \exp(-t)$.
 
 ```julia
 using StochasticDiffEq, DiffEqDevTools, Random, Plots
+using SciMLLogging
 gr()
 
 u₀ = [1.0, 1.0]
@@ -127,7 +128,7 @@ appxsol_setup = Dict(:alg => EM(), :dt => test_dt)
 
 wp = WorkPrecisionSet(ensemble_prob,
     abstols, reltols, setups, test_dt;
-    maxiters = 1e7, verbose = false,
+    maxiters = 1e7, verbose = SciMLLogging.None(),
     save_everystep = false, save_start = false,
     appxsol_setup = appxsol_setup,
     expected_value = exp(-3.0),
@@ -235,7 +236,7 @@ appxsol_setup_bruss = Dict(:alg => EM(), :dt => test_dt_bruss)
 
 wp_bruss = WorkPrecisionSet(ensembleprob_bruss2,
     abstols_bruss, reltols_bruss, setups_bruss, test_dt_bruss;
-    maxiters = 1e7, verbose = false,
+    maxiters = 1e7, verbose = SciMLLogging.None(),
     save_everystep = false, save_start = false,
     appxsol_setup = appxsol_setup_bruss,
     trajectories = numtraj_bruss, error_estimate = :weak_final)

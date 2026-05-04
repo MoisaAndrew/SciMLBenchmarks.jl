@@ -6,6 +6,7 @@ author: Chris Rackauckas
 ```julia
 using OrdinaryDiffEq, ODEInterfaceDiffEq, LSODA, Sundials, DiffEqDevTools, StaticArrays,
       IRKGaussLegendre
+using SciMLLogging
 using Plots;
 gr()
 
@@ -144,7 +145,7 @@ plot(wp)
 
 ```julia
 wp = WorkPrecisionSet(probs, abstols, reltols, setups; appxsol = test_sol,
-    dense = false, numruns = 100, verbose = false)
+    dense = false, numruns = 100, verbose = SciMLLogging.None())
 plot(wp)
 ```
 
@@ -206,7 +207,7 @@ solnames = ["Tsit5", "Vern9", "IRKGL16", "IRKGL16 SIMD",
     "AitkenNeville", "Midpoint Deuflhard", "Midpoint Hairer Wanner"]
 wp = WorkPrecisionSet(
     probs, abstols, reltols, setups; appxsol = test_sol, names = solnames,
-    save_everystep = false, verbose = false, numruns = 100)
+    save_everystep = false, verbose = SciMLLogging.None(), numruns = 100)
 plot(wp)
 ```
 
@@ -226,7 +227,7 @@ setups = [Dict(:alg=>ExtrapolationMidpointDeuflhard(
 solnames = ["Deuflhard", "No threads", "standard", "Romberg", "Bulirsch"]
 wp = WorkPrecisionSet(
     probs, abstols, reltols, setups; appxsol = test_sol, names = solnames,
-    save_everystep = false, verbose = false, numruns = 100)
+    save_everystep = false, verbose = SciMLLogging.None(), numruns = 100)
 plot(wp)
 ```
 
@@ -244,7 +245,7 @@ setups = [Dict(:alg=>ExtrapolationMidpointHairerWanner(
 solnames = ["1", "2", "3", "4", "5"]
 wp = WorkPrecisionSet(
     probs, abstols, reltols, setups; appxsol = test_sol, names = solnames,
-    save_everystep = false, verbose = false, numruns = 100)
+    save_everystep = false, verbose = SciMLLogging.None(), numruns = 100)
 plot(wp)
 ```
 

@@ -5,6 +5,7 @@ author: Gijs Vermariën and Chris Rackauckas
 
 ```julia
 using Catalyst
+using SciMLLogging
 using OrdinaryDiffEq
 using Plots
 using Symbolics
@@ -329,7 +330,7 @@ setups = [
     #Dict(:alg=>ImplicitEulerBarycentricExtrapolation(min_order = 5, threading = OrdinaryDiffEqCore.PolyesterThreads())),
     Dict(:alg=>ImplicitEulerBarycentricExtrapolation(min_order = 5, threading = false))
 ]
-wp = WorkPrecisionSet(oprob, abstols, reltols, setups; verbose = false,
+wp = WorkPrecisionSet(oprob, abstols, reltols, setups; verbose = SciMLLogging.None(),
     save_everystep = false, appxsol = refsol, maxiters = Int(1e5), numruns = 10)
 plot(wp)
 ```
@@ -420,7 +421,7 @@ setups = [
     #Dict(:alg=>ImplicitEulerBarycentricExtrapolation(min_order = 5, threading = OrdinaryDiffEqCore.PolyesterThreads())),
     #Dict(:alg=>ImplicitEulerBarycentricExtrapolation(min_order = 5, threading = false)),
 ]
-wp = WorkPrecisionSet(oprob, abstols, reltols, setups; verbose = false,
+wp = WorkPrecisionSet(oprob, abstols, reltols, setups; verbose = SciMLLogging.None(),
     save_everystep = false, appxsol = refsol, maxiters = Int(1e5), numruns = 10,
     print_names = true)
 plot(wp)
