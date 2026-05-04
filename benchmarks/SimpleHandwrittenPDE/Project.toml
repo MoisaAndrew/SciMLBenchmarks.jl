@@ -27,7 +27,7 @@ Sundials = "c3572dad-4567-51f8-b174-8c6c989267f4"
 [compat]
 AlgebraicMultigrid = "1"
 ClassicalOrthogonalPolynomials = "0.15"
-DiffEqDevTools = "4"
+DiffEqDevTools = "3"
 IncompleteLU = "0.2"
 LSODA = "0.7"
 LinearSolve = "3"

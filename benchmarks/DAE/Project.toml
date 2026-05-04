@@ -19,7 +19,7 @@ Symbolics = "0c5d862f-8b57-4792-8d23-62f2024744c7"
 [compat]
 DASKR = "2"
 DASSL = "2"
-DiffEqDevTools = "4"
+DiffEqDevTools = "3"
 ModelingToolkit = "11"
 ODEInterfaceDiffEq = "3.16"
 OrdinaryDiffEq = "7"
