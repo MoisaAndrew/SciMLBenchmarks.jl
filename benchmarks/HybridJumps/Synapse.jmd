@@ -1980,7 +1980,7 @@ function (affect!::SavingAffect)(integrator, force_save = false)
             Val{false}
         )
     end
-    u_modified!(integrator, false)
+    derivative_discontinuity!(integrator, false)
 end
 
 # adapted from DiffEqCallbacks.jl/src/saving.jl
