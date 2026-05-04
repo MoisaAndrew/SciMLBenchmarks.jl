@@ -69,8 +69,8 @@ See that it's periodic in the chosen timespan:
 
 ```julia
 sol = solve(prob, Vern9(), abstol = 1e-14, reltol = 1e-14)
-@show sol[1] - sol[end]
-@show sol[end] - prob.u0;
+@show sol.u[1] - sol.u[end]
+@show sol.u[end] - prob.u0;
 ```
 
 This three-body problem is known to be a tough problem. Let's see how the algorithms do at standard tolerances.

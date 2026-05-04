@@ -415,13 +415,13 @@ setups = [
     Dict(:alg=>KenCarp47(linsolve = UMFPACKFactorization()), :prob_choice => 2),
     Dict(:alg=>KenCarp47(linsolve = KrylovJL_GMRES())),
     Dict(:alg=>KenCarp47(linsolve = KrylovJL_GMRES()), :prob_choice => 2),
-    Dict(:alg=>KenCarp47(linsolve = KrylovJL_GMRES(), precs = incompletelu, concrete_jac = true)),
+    Dict(:alg=>KenCarp47(linsolve = KrylovJL_GMRES(; precs = incompletelu), concrete_jac = true)),
     Dict(
-        :alg=>KenCarp47(linsolve = KrylovJL_GMRES(), precs = incompletelu, concrete_jac = true),
+        :alg=>KenCarp47(linsolve = KrylovJL_GMRES(; precs = incompletelu), concrete_jac = true),
         :prob_choice => 2),
-    Dict(:alg=>KenCarp47(linsolve = KrylovJL_GMRES(), precs = algebraicmultigrid, concrete_jac = true)),
+    Dict(:alg=>KenCarp47(linsolve = KrylovJL_GMRES(; precs = algebraicmultigrid), concrete_jac = true)),
     Dict(
-        :alg=>KenCarp47(linsolve = KrylovJL_GMRES(), precs = algebraicmultigrid, concrete_jac = true),
+        :alg=>KenCarp47(linsolve = KrylovJL_GMRES(; precs = algebraicmultigrid), concrete_jac = true),
         :prob_choice => 2)]
 names = ["KenCarp47 KLU", "KenCarp47 KLU MTK", "KenCarp47 UMFPACK",
     "KenCarp47 UMFPACK MTK", "KenCarp47 GMRES",

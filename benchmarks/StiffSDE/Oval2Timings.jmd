@@ -7,7 +7,7 @@ author: Chris Rackauckas
 using StochasticDiffEq, SDEProblemLibrary, Random, Base.Threads
 using SciMLLogging
 prob = SDEProblemLibrary.oval2ModelExample(largeFluctuations=true,useBigs=false)
-prob_func(prob,i,repeat) = remake(prob,seed=i)
+prob_func(prob, ctx) = remake(prob, seed = ctx.i)
 prob = EnsembleProblem(remake(prob,tspan=(0.0,1.0)),prob_func=prob_func)
 js = 16:21
 dts = 1.0 ./ 2.0 .^ (js)

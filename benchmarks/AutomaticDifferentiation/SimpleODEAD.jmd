@@ -370,7 +370,7 @@ function diffeq_sen(
         f, u0, tspan, p, alg = Tsit5(); sensalg = ForwardSensitivity(), kwargs...)
     prob = ODEForwardSensitivityProblem(f, u0, tspan, p, sensalg)
     sol = solve(prob, alg; save_everystep = false, kwargs...)
-    extract_local_sensitivities(sol, length(sol))[2]
+    extract_local_sensitivities(sol, length(sol.t))[2]
 end
 
 function auto_sen(f, u0, tspan, p, alg = Tsit5(); kwargs...)

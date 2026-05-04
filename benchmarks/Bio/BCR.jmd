@@ -240,11 +240,11 @@ plot(wp; label = names)
 ```julia
 setups = [
     Dict(:alg=>TRBDF2(
-        linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff(), precs = incompletelu, concrete_jac = true)),
-    Dict(:alg=>QNDF(linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff(), precs = incompletelu, concrete_jac = true)),
-    Dict(:alg=>FBDF(linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff(), precs = incompletelu, concrete_jac = true)),
+        linsolve = KrylovJL_GMRES(; precs = incompletelu), autodiff = AutoFiniteDiff(), concrete_jac = true)),
+    Dict(:alg=>QNDF(linsolve = KrylovJL_GMRES(; precs = incompletelu), autodiff = AutoFiniteDiff(), concrete_jac = true)),
+    Dict(:alg=>FBDF(linsolve = KrylovJL_GMRES(; precs = incompletelu), autodiff = AutoFiniteDiff(), concrete_jac = true)),
     Dict(:alg=>KenCarp4(
-        linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff(), precs = incompletelu, concrete_jac = true))
+        linsolve = KrylovJL_GMRES(; precs = incompletelu), autodiff = AutoFiniteDiff(), concrete_jac = true))
 ];
 ```
 
@@ -297,10 +297,10 @@ setups = [
         :alg=>CVODE_BDF(linear_solver = :GMRES, prec = precilu, psetup = psetupilu, prec_side = 1),
         :prob_choice => 2),
     Dict(
-        :alg=>QNDF(linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff(), precs = incompletelu, concrete_jac = true),
+        :alg=>QNDF(linsolve = KrylovJL_GMRES(; precs = incompletelu), autodiff = AutoFiniteDiff(), concrete_jac = true),
         :prob_choice => 3),
     Dict(
-        :alg=>FBDF(linsolve = KrylovJL_GMRES(), autodiff = AutoFiniteDiff(), precs = incompletelu, concrete_jac = true),
+        :alg=>FBDF(linsolve = KrylovJL_GMRES(; precs = incompletelu), autodiff = AutoFiniteDiff(), concrete_jac = true),
         :prob_choice => 3),
     Dict(:alg=>QNDF(linsolve = KLUFactorization(), autodiff = AutoFiniteDiff()), :prob_choice => 3),
     Dict(:alg=>FBDF(linsolve = KLUFactorization(), autodiff = AutoFiniteDiff()), :prob_choice => 3),
