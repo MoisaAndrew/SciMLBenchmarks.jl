@@ -7,6 +7,7 @@ From the paper [A Comparison of Automatic Differentiation and Continuous Sensiti
 
 ```julia
 using ParameterizedFunctions, OrdinaryDiffEq, LinearAlgebra, StaticArrays
+using OrdinaryDiffEqRosenbrock
 using SciMLSensitivity, ForwardDiff, FiniteDiff, ReverseDiff, BenchmarkTools, Test
 using DataFrames, PrettyTables, Markdown
 tols = (abstol = 1e-5, reltol = 1e-7)

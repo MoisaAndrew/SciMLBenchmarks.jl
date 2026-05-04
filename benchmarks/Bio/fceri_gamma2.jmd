@@ -18,6 +18,7 @@ using DiffEqBase, OrdinaryDiffEq, Catalyst, ReactionNetworkImporters,
       Sundials, Plots, DiffEqDevTools, ODEInterface, ODEInterfaceDiffEq,
       LSODA, TimerOutputs, LinearAlgebra, ModelingToolkit, BenchmarkTools,
       LinearSolve, RecursiveFactorization
+using OrdinaryDiffEqAdamsBashforthMoulton, OrdinaryDiffEqBDF, OrdinaryDiffEqSDIRK, OrdinaryDiffEqVerner
 
 gr()
 const to = TimerOutput()

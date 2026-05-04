@@ -13,6 +13,7 @@ using DiffEqBase, OrdinaryDiffEq, Catalyst, ReactionNetworkImporters,
       Sundials, Plots, DiffEqDevTools, ODEInterface, ODEInterfaceDiffEq,
       LSODA, TimerOutputs, LinearAlgebra, ModelingToolkit, BenchmarkTools, JLD2,
       RecursiveFactorization
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExtrapolation, OrdinaryDiffEqRosenbrock, OrdinaryDiffEqSDIRK
 
 gr()
 

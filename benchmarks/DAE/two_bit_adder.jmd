@@ -43,6 +43,7 @@ http://www.dm.uniba.it/~testset/
 
 ```julia
 using OrdinaryDiffEq, DiffEqDevTools, Sundials, ModelingToolkit, Plots
+using OrdinaryDiffEqBDF, OrdinaryDiffEqFIRK, OrdinaryDiffEqRosenbrock
 using DASSL, DASKR
 using LinearAlgebra, SparseArrays
 ```

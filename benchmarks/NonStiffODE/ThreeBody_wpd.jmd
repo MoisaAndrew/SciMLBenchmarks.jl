@@ -6,6 +6,7 @@ author: Chris Rackauckas
 ```julia
 using OrdinaryDiffEq, ODEInterfaceDiffEq, LSODA, Sundials, DiffEqDevTools, StaticArrays,
       IRKGaussLegendre
+using OrdinaryDiffEqAdamsBashforthMoulton, OrdinaryDiffEqExtrapolation, OrdinaryDiffEqFIRK, OrdinaryDiffEqHighOrderRK, OrdinaryDiffEqLowOrderRK, OrdinaryDiffEqVerner
 using SciMLLogging
 using Plots;
 gr()

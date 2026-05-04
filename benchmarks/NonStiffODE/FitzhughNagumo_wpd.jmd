@@ -11,6 +11,7 @@ The purpose of this is to see how the errors scale on a standard nonlinear probl
 using OrdinaryDiffEq, ParameterizedFunctions, ODEInterface,
       ODEInterfaceDiffEq, LSODA, Sundials, DiffEqDevTools,
       StaticArrays, OrdinaryDiffEqSIMDRK
+using OrdinaryDiffEqAdamsBashforthMoulton, OrdinaryDiffEqExtrapolation, OrdinaryDiffEqHighOrderRK, OrdinaryDiffEqLowOrderRK, OrdinaryDiffEqVerner
 using SciMLLogging
 using Plots;
 gr()

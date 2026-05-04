@@ -18,6 +18,7 @@ This represents a realistic engineering system with multiple time scales, making
 
 ```julia
 using OrdinaryDiffEq, DiffEqDevTools, Sundials, Plots, ODEInterfaceDiffEq, LSODA, LinearSolve
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExtrapolation, OrdinaryDiffEqFIRK, OrdinaryDiffEqRosenbrock, OrdinaryDiffEqSDIRK
 using SciMLLogging
 using PreallocationTools
 gr()

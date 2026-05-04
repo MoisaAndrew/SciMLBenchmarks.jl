@@ -44,6 +44,7 @@ http://www.dm.uniba.it/~testset/
 
 ```julia
 using OrdinaryDiffEq, Sundials, DiffEqDevTools, ModelingToolkit, Plots
+using OrdinaryDiffEqRosenbrock
 using ODEInterfaceDiffEq, LinearAlgebra
 using ModelingToolkit: t_nounits as t, D_nounits as D
 ```

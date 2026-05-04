@@ -12,6 +12,7 @@ The aim of this benchmark is to see what happens with the energy error when high
 
 ```julia
 using OrdinaryDiffEq, Plots, DiffEqCallbacks, LinearAlgebra
+using OrdinaryDiffEqRKN, OrdinaryDiffEqSymplecticRK
 using OrdinaryDiffEqTaylorSeries
 using TaylorIntegration
 using ParameterizedFunctions

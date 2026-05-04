@@ -7,6 +7,7 @@ This is a benchmark of a small non-stiff BVP.
 
 ```julia
 using BoundaryValueDiffEq, OrdinaryDiffEq, BenchmarkTools
+using OrdinaryDiffEqLowOrderRK
 
 y0 = [
     -4.7763169762853989E+06,

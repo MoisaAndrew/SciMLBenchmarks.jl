@@ -68,6 +68,7 @@ $$
 ```julia
 using OrdinaryDiffEq, DiffEqDevTools, Sundials, ModelingToolkit, ODEInterfaceDiffEq,
       Plots, DASSL, DASKR
+using OrdinaryDiffEqBDF, OrdinaryDiffEqFIRK, OrdinaryDiffEqRosenbrock
 using LinearAlgebra
 using ModelingToolkit: t_nounits as t, D_nounits as D
 

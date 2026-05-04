@@ -17,6 +17,7 @@ In order to separate these two, we will use `iip` for the in-place names and `oo
 
 ```julia
 using OrdinaryDiffEq, Plots, DiffEqCallbacks
+using OrdinaryDiffEqRKN, OrdinaryDiffEqSymplecticRK
 using OrdinaryDiffEqTaylorSeries
 using SciMLBenchmarks
 using TaylorIntegration, LinearAlgebra, StaticArrays

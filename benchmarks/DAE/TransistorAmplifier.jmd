@@ -6,6 +6,7 @@ author: Aayush Sabharwal, Polic Marko
 ```julia
 using DiffEqDevTools, ODEInterfaceDiffEq, Plots
 using ModelingToolkit, OrdinaryDiffEq, Symbolics
+using OrdinaryDiffEqBDF, OrdinaryDiffEqFIRK, OrdinaryDiffEqRosenbrock
 using ModelingToolkit: t_nounits as t, D_nounits as D
 using LinearAlgebra
 

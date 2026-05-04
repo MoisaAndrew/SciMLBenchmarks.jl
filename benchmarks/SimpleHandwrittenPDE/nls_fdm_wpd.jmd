@@ -30,6 +30,7 @@ The spatial derivative operators are represented via finite difference approxima
 
 ```julia
 using OrdinaryDiffEq
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExponentialRK, OrdinaryDiffEqFIRK, OrdinaryDiffEqHighOrderRK, OrdinaryDiffEqIMEXMultistep, OrdinaryDiffEqRosenbrock
 using DiffEqDevTools
 using SciMLOperators
 using LinearSolve

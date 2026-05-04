@@ -6,6 +6,7 @@ author: Chris Rackauckas
 ```julia
 using OrdinaryDiffEq, ParameterizedFunctions, ODEInterfaceDiffEq, LSODA,
       Sundials, DiffEqDevTools, StaticArrays, OrdinaryDiffEqSIMDRK, IRKGaussLegendre
+using OrdinaryDiffEqAdamsBashforthMoulton, OrdinaryDiffEqExtrapolation, OrdinaryDiffEqHighOrderRK, OrdinaryDiffEqLowOrderRK
 using SciMLLogging
 
 k(t) = 0.25*sin(t)^2

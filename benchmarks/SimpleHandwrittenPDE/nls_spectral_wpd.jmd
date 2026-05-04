@@ -5,6 +5,7 @@ author: Chris Rackauckas
 
 ```julia
 using OrdinaryDiffEq
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExponentialRK, OrdinaryDiffEqFIRK, OrdinaryDiffEqHighOrderRK, OrdinaryDiffEqIMEXMultistep
 using DiffEqDevTools
 using SciMLOperators
 using LinearSolve

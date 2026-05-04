@@ -5,6 +5,7 @@ author: Chris Rackauckas
 
 ```julia
 using OrdinaryDiffEq, DiffEqDevTools, ParameterizedFunctions, Plots, ODEInterfaceDiffEq, LSODA, Sundials
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExponentialRK, OrdinaryDiffEqExtrapolation, OrdinaryDiffEqFIRK, OrdinaryDiffEqPDIRK, OrdinaryDiffEqRosenbrock, OrdinaryDiffEqSDIRK, OrdinaryDiffEqStabilizedRK
 using SciMLLogging
 gr() #gr(fmt=:png)
 using LinearAlgebra, StaticArrays, RecursiveFactorization, Polyester, OrdinaryDiffEqCore

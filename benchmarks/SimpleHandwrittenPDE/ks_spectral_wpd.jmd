@@ -26,6 +26,7 @@ The spatial derivative operators are represented via Fourier pseudospectral appr
 
 ```julia
 using OrdinaryDiffEq
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExponentialRK, OrdinaryDiffEqIMEXMultistep, OrdinaryDiffEqRosenbrock, OrdinaryDiffEqSDIRK
 using DiffEqDevTools
 using SciMLOperators
 using LinearSolve

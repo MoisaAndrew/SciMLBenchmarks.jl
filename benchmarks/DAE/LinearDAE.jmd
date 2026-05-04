@@ -31,6 +31,7 @@ Each DAE is defined using both ModelingToolkit symbolic form and static array ma
 ```julia
 using OrdinaryDiffEq, DiffEqDevTools, Sundials, ModelingToolkit, ODEInterfaceDiffEq,
       Plots, DASSL, DASKR, StaticArrays
+using OrdinaryDiffEqBDF, OrdinaryDiffEqRosenbrock
 using LinearAlgebra, SparseArrays
 using ModelingToolkit: t_nounits as t, D_nounits as D
 const SA = StaticArrays.SA

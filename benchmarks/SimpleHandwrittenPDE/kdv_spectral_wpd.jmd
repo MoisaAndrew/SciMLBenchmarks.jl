@@ -5,6 +5,7 @@ author: Arjit Seth
 
 ```julia
 using OrdinaryDiffEq
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExponentialRK, OrdinaryDiffEqFIRK, OrdinaryDiffEqIMEXMultistep, OrdinaryDiffEqSDIRK
 using DiffEqDevTools
 using SciMLOperators
 using LinearSolve

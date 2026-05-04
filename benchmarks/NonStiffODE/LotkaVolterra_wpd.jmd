@@ -10,6 +10,7 @@ The purpose of this problem is to test the performance on easy problems. Since i
 ```julia
 using OrdinaryDiffEq, ParameterizedFunctions, ODEInterfaceDiffEq, LSODA,
       Sundials, DiffEqDevTools, StaticArrays, OrdinaryDiffEqSIMDRK, IRKGaussLegendre
+using OrdinaryDiffEqAdamsBashforthMoulton, OrdinaryDiffEqExtrapolation, OrdinaryDiffEqHighOrderRK, OrdinaryDiffEqLowOrderRK
 using SciMLLogging
 
 f = @ode_def LotkaVolterra begin

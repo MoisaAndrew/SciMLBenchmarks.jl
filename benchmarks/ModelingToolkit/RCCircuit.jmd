@@ -11,6 +11,7 @@ runtimes of MTK vs OpenModelica and Dymola.
 ```julia
 using ModelingToolkit, OrdinaryDiffEq, BenchmarkTools,
       ModelingToolkitStandardLibrary, OMJulia, CairoMakie
+using OrdinaryDiffEqRosenbrock
 using ModelingToolkitStandardLibrary.Blocks
 using ModelingToolkitStandardLibrary.Electrical
 ```

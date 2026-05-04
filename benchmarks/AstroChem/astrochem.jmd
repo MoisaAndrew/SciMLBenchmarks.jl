@@ -7,6 +7,7 @@ author: Gijs Vermariën and Chris Rackauckas
 using Catalyst
 using SciMLLogging
 using OrdinaryDiffEq
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExtrapolation, OrdinaryDiffEqFIRK, OrdinaryDiffEqRosenbrock, OrdinaryDiffEqSDIRK
 using Plots
 using Symbolics
 using DiffEqDevTools
