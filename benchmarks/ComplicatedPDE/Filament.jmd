@@ -15,8 +15,10 @@ The model is thus defined as follows:
 
 ```julia
 using OrdinaryDiffEq, ODEInterfaceDiffEq, Sundials, DiffEqDevTools, LSODA, LinearSolve
-using OrdinaryDiffEqBDF, OrdinaryDiffEqExponentialRK, OrdinaryDiffEqExtrapolation, OrdinaryDiffEqFIRK, OrdinaryDiffEqLowOrderRK, OrdinaryDiffEqRosenbrock, OrdinaryDiffEqSDIRK, OrdinaryDiffEqStabilizedRK
-using SciMLLogging
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExponentialRK, OrdinaryDiffEqExtrapolation,
+    OrdinaryDiffEqFIRK, OrdinaryDiffEqLowOrderRK, OrdinaryDiffEqRosenbrock,
+    OrdinaryDiffEqSDIRK, OrdinaryDiffEqStabilizedRK
+using SciMLLogging, ADTypes
 using LinearAlgebra, RecursiveFactorization
 using Plots
 gr()
@@ -386,7 +388,9 @@ setups = [
     Dict(:alg => lsoda()),
     Dict(:alg => ROCK2()),
     Dict(:alg => ROCK4()),
-    Dict(:alg => ESERK5())
+    Dict(:alg => ESERK5()),
+    Dict(:alg => RKC()),
+    Dict(:alg => TSRKC3())
 ];
 
 wp = WorkPrecisionSet(prob, abstols, reltols, setups; appxsol = test_sol,
@@ -458,7 +462,9 @@ setups = [
     Dict(:alg => Kvaerno4(autodiff = AutoFiniteDiff())),
     Dict(:alg => ROCK2()),
     Dict(:alg => ROCK4()),
-    Dict(:alg => ESERK5())
+    Dict(:alg => ESERK5()),
+    Dict(:alg => RKC()),
+    Dict(:alg => TSRKC3())
 ];
 
 wp = WorkPrecisionSet(prob, abstols, reltols, setups; appxsol = test_sol,
@@ -485,7 +491,9 @@ setups = [
     Dict(:alg => Kvaerno4(autodiff = AutoFiniteDiff())),
     Dict(:alg => ROCK2()),
     Dict(:alg => ROCK4()),
-    Dict(:alg => ESERK5())
+    Dict(:alg => ESERK5()),
+    Dict(:alg => RKC()),
+    Dict(:alg => TSRKC3())
 ];
 
 wp = WorkPrecisionSet(prob, abstols, reltols, setups; appxsol = test_sol,
@@ -641,7 +649,9 @@ setups = [
     Dict(:alg => lsoda()),
     Dict(:alg => ROCK2()),
     Dict(:alg => ROCK4()),
-    Dict(:alg => ESERK5())
+    Dict(:alg => ESERK5()),
+    Dict(:alg => RKC()),
+    Dict(:alg => TSRKC3())
 ];
 
 wp = WorkPrecisionSet(prob, abstols, reltols, setups; appxsol = test_sol,
