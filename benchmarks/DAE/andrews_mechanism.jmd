@@ -44,6 +44,7 @@ http://www.dm.uniba.it/~testset/
 
 ```julia
 using OrdinaryDiffEq, Sundials, DiffEqDevTools, ModelingToolkit, Plots
+using OrdinaryDiffEqRosenbrock
 using ODEInterfaceDiffEq, LinearAlgebra
 using ModelingToolkit: t_nounits as t, D_nounits as D
 ```
@@ -521,8 +522,8 @@ Jacobian.
 
 ```julia
 println("=== Mass-Matrix ODE Form ===")
-for (name, alg) in [("Rodas5P(autodiff=false)", Rodas5P(autodiff = false)),
-                     ("FBDF(autodiff=false)",    FBDF(autodiff = false)),
+for (name, alg) in [("Rodas5P(autodiff=AutoFiniteDiff())", Rodas5P(autodiff = AutoFiniteDiff())),
+                     ("FBDF(autodiff=AutoFiniteDiff())",    FBDF(autodiff = AutoFiniteDiff())),
                      ("radau()",                 radau()),
                      ("radau5()",                radau5())]
     print("  $name: ")

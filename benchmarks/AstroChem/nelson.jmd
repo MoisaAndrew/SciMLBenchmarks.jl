@@ -5,6 +5,7 @@ author: Nina De La Torre (Advised by Stella Offner) and Chris Rackauckas
 
 ```julia
 using OrdinaryDiffEq
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExtrapolation, OrdinaryDiffEqFIRK, OrdinaryDiffEqRosenbrock, OrdinaryDiffEqSDIRK
 using DiffEqDevTools, Plots
 using Sundials, LSODA
 using ODEInterface, ODEInterfaceDiffEq

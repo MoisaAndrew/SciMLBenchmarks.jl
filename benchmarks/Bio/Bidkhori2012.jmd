@@ -13,6 +13,7 @@ using DiffEqBase, OrdinaryDiffEq, Catalyst, ReactionNetworkImporters,
       Sundials, Plots, DiffEqDevTools, ODEInterface, ODEInterfaceDiffEq,
       LSODA, TimerOutputs, LinearAlgebra, ModelingToolkit, BenchmarkTools, JLD2,
       RecursiveFactorization
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExtrapolation, OrdinaryDiffEqRosenbrock, OrdinaryDiffEqSDIRK
 
 gr()
 
@@ -1438,17 +1439,17 @@ Note that the extrapolation methods currently do not support sparse Jacobians.
 ```julia
 setups = [
     #Dict(:alg=>CVODE_BDF()), #Fails!
-    Dict(:alg=>KenCarp4(autodiff = false)),
-    Dict(:alg=>Rodas4(autodiff = false)),
-    Dict(:alg=>QNDF(autodiff = false))    #Dict(:alg=>lsoda()),
+    Dict(:alg=>KenCarp4(autodiff = AutoFiniteDiff())),
+    Dict(:alg=>Rodas4(autodiff = AutoFiniteDiff())),
+    Dict(:alg=>QNDF(autodiff = AutoFiniteDiff()))    #Dict(:alg=>lsoda()),
     #Dict(:alg=>radau()),
     #Dict(:alg=>seulex()),
-    #Dict(:alg=>ImplicitEulerExtrapolation(autodiff = false,min_order = 8, init_order = 9,threading = OrdinaryDiffEq.PolyesterThreads())),
-    #Dict(:alg=>ImplicitEulerExtrapolation(autodiff = false,min_order = 8, init_order = 9,threading = false)),
-    #Dict(:alg=>ImplicitEulerBarycentricExtrapolation(autodiff = false,min_order = 7, init_order = 8,threading = OrdinaryDiffEq.PolyesterThreads())),
-    #Dict(:alg=>ImplicitEulerBarycentricExtrapolation(autodiff = false,min_order = 7, init_order = 8,threading = false)),
-    #Dict(:alg=>ImplicitHairerWannerExtrapolation(autodiff = false,init_order = 5,threading = OrdinaryDiffEq.PolyesterThreads())),
-    #Dict(:alg=>ImplicitHairerWannerExtrapolation(autodiff = false,init_order = 5, threading = false)),
+    #Dict(:alg=>ImplicitEulerExtrapolation(autodiff = AutoFiniteDiff(),min_order = 8, init_order = 9,threading = OrdinaryDiffEq.PolyesterThreads())),
+    #Dict(:alg=>ImplicitEulerExtrapolation(autodiff = AutoFiniteDiff(),min_order = 8, init_order = 9,threading = false)),
+    #Dict(:alg=>ImplicitEulerBarycentricExtrapolation(autodiff = AutoFiniteDiff(),min_order = 7, init_order = 8,threading = OrdinaryDiffEq.PolyesterThreads())),
+    #Dict(:alg=>ImplicitEulerBarycentricExtrapolation(autodiff = AutoFiniteDiff(),min_order = 7, init_order = 8,threading = false)),
+    #Dict(:alg=>ImplicitHairerWannerExtrapolation(autodiff = AutoFiniteDiff(),init_order = 5,threading = OrdinaryDiffEq.PolyesterThreads())),
+    #Dict(:alg=>ImplicitHairerWannerExtrapolation(autodiff = AutoFiniteDiff(),init_order = 5, threading = false)),
 ]
 
 solnames = ["KenCarp4", "Rodas4", "QNDF"#"ImplEulerExtpl (threaded)", "ImplEulerExtpl (non-threaded)",    #"ImplEulerBaryExtpl (threaded)","ImplEulerBaryExtpl (non-threaded)","ImplHWExtpl (threaded)","ImplHWExtpl (non-threaded)"

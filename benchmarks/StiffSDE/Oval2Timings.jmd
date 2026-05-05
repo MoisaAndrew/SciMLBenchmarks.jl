@@ -5,8 +5,9 @@ author: Chris Rackauckas
 
 ```julia
 using StochasticDiffEq, SDEProblemLibrary, Random, Base.Threads
+using SciMLLogging
 prob = SDEProblemLibrary.oval2ModelExample(largeFluctuations=true,useBigs=false)
-prob_func(prob,i,repeat) = remake(prob,seed=i)
+prob_func(prob, ctx) = remake(prob, seed = ctx.i)
 prob = EnsembleProblem(remake(prob,tspan=(0.0,1.0)),prob_func=prob_func)
 js = 16:21
 dts = 1.0 ./ 2.0 .^ (js)
@@ -116,8 +117,8 @@ println("The number of Adaptive Fails is $numfails. Elapsed time was $adaptive_t
 ```julia
 for j in eachindex(js)
   println("j = $j")
-  sol =solve(prob,EM(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=false,trajectories=Threads.nthreads())
-  t1 = @elapsed sol = solve(prob,EM(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=false,trajectories=trajectories)
+  sol =solve(prob,EM(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=SciMLLogging.None(),trajectories=Threads.nthreads())
+  t1 = @elapsed sol = solve(prob,EM(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=SciMLLogging.None(),trajectories=trajectories)
   numfails = sum([Int(any(isnan,sol[i]) || sol[i].t[end] != 1) for i in 1:trajectories])
   println("The number of Euler-Maruyama Fails is $numfails. Elapsed time was $t1")
   fails[j,1] = numfails
@@ -128,8 +129,8 @@ end
 ```julia
 for j in 1:4
   println("j = $j")
-  sol =solve(prob,SRIW1(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=false,trajectories=Threads.nthreads())
-  t1 = @elapsed sol = solve(prob,SRIW1(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=false,trajectories=trajectories)
+  sol =solve(prob,SRIW1(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=SciMLLogging.None(),trajectories=Threads.nthreads())
+  t1 = @elapsed sol = solve(prob,SRIW1(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=SciMLLogging.None(),trajectories=trajectories)
   numfails = sum([Int(any(isnan,sol[i]) || sol[i].t[end] != 1) for i in 1:trajectories])
   println("The number of SRIW1 Fails is $numfails. Elapsed time was $t1")
   fails[j,3] = numfails
@@ -142,8 +143,8 @@ js = 17:21
 dts = 1.0 ./2.0 .^ (js)
 for j in 1:6
   println("j = $j")
-  sol =solve(prob,ImplicitEM(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=false,trajectories=Threads.nthreads())
-  t1 = @elapsed sol = solve(prob,ImplicitEM(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=false,trajectories=trajectories)
+  sol =solve(prob,ImplicitEM(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=SciMLLogging.None(),trajectories=Threads.nthreads())
+  t1 = @elapsed sol = solve(prob,ImplicitEM(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=SciMLLogging.None(),trajectories=trajectories)
   numfails = sum([Int(any(isnan,sol[i]) || sol[i].t[end] != 1) for i in 1:trajectories])
   println("The number of Implicit-EM Fails is $numfails. Elapsed time was $t1")
 end
@@ -155,8 +156,8 @@ dts = 1.0 ./ 2.0 .^(js)
 
 for j in 1:6
   println("j = $j")
-  sol =solve(prob,ImplicitRKMil(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=false,trajectories=Threads.nthreads())
-  t1 = @elapsed sol = solve(prob,ImplicitRKMil(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=false,trajectories=trajectories)
+  sol =solve(prob,ImplicitRKMil(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=SciMLLogging.None(),trajectories=Threads.nthreads())
+  t1 = @elapsed sol = solve(prob,ImplicitRKMil(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=SciMLLogging.None(),trajectories=trajectories)
   numfails = sum([Int(any(isnan,sol[i]) || sol[i].t[end] != 1) for i in 1:trajectories])
   println("The number of Implicit-RKMil Fails is $numfails. Elapsed time was $t1")
 end
@@ -165,8 +166,8 @@ end
 ```julia
 for j in 1:6
   println("j = $j")
-  sol =solve(prob,RKMil(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=false,trajectories=Threads.nthreads())
-  t1 = @elapsed sol = solve(prob,RKMil(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=false,trajectories=trajectories)
+  sol =solve(prob,RKMil(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=SciMLLogging.None(),trajectories=Threads.nthreads())
+  t1 = @elapsed sol = solve(prob,RKMil(),EnsembleThreads(),dt=dts[j],maxiters=Int(1e11),save_everystep=false,verbose=SciMLLogging.None(),trajectories=trajectories)
   numfails = sum([Int(any(isnan,sol[i]) || sol[i].t[end] != 1) for i in 1:trajectories])
   println("The number of RKMil Fails is $numfails. Elapsed time was $t1")
   fails[j,2] = numfails

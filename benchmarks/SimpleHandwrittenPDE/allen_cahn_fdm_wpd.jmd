@@ -26,6 +26,7 @@ The spatial derivative operators are represented via finite difference approxima
 
 ```julia
 using OrdinaryDiffEq
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExponentialRK, OrdinaryDiffEqFIRK, OrdinaryDiffEqIMEXMultistep, OrdinaryDiffEqSDIRK
 using DiffEqDevTools
 using SciMLOperators
 using LinearSolve
@@ -71,7 +72,7 @@ end;
 N = 128 # Number of grid points
 L = 2.0  # Domain length
 xs, prob = allen_cahn(N, L)
-@time sol = solve(prob, AutoVern7(RadauIIA5(autodiff=false)); dt=1e-2, abstol=1e-14, reltol=1e-14, adaptive=true)
+@time sol = solve(prob, AutoVern7(RadauIIA5(autodiff=AutoFiniteDiff())); dt=1e-2, abstol=1e-14, reltol=1e-14, adaptive=true)
 
 test_sol = TestSolution(sol) # Reference solution for error estimation
 
@@ -282,18 +283,18 @@ setups = [
     # Dict(:alg => KenCarp3(linsolve=KrylovJL_GMRES(), :dts => 1e-2 * ones(N), :adaptive => true),
     # Dict(:alg => KenCarp4(linsolve=KrylovJL_GMRES(), :dts => 1e-2 * ones(N), :adaptive => true),
     # Dict(:alg => KenCarp5(linsolve=KrylovJL_GMRES(), :dts => 1e-2 * ones(N), :adaptive => true),
-    Dict(:alg => KenCarp3(linsolve=KrylovJL_GMRES(), precs = inc_lu, concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
-    Dict(:alg => KenCarp4(linsolve=KrylovJL_GMRES(), precs = inc_lu, concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
-    Dict(:alg => KenCarp5(linsolve=KrylovJL_GMRES(), precs = inc_lu, concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
-    Dict(:alg => KenCarp3(linsolve=KrylovJL_GMRES(), precs = w_diag, concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
-    Dict(:alg => KenCarp4(linsolve=KrylovJL_GMRES(), precs = w_diag, concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
-    Dict(:alg => KenCarp5(linsolve=KrylovJL_GMRES(), precs = w_diag, concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
-    Dict(:alg => KenCarp3(linsolve=KrylovJL_GMRES(), precs = amg, concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
-    Dict(:alg => KenCarp4(linsolve=KrylovJL_GMRES(), precs = amg, concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
-    Dict(:alg => KenCarp5(linsolve=KrylovJL_GMRES(), precs = amg, concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),    
-    Dict(:alg => KenCarp3(linsolve=KrylovJL_GMRES(), precs = amg2, concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
-    Dict(:alg => KenCarp4(linsolve=KrylovJL_GMRES(), precs = amg2, concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
-    Dict(:alg => KenCarp5(linsolve=KrylovJL_GMRES(), precs = amg2, concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
+    Dict(:alg => KenCarp3(linsolve=KrylovJL_GMRES(; precs = inc_lu), concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
+    Dict(:alg => KenCarp4(linsolve=KrylovJL_GMRES(; precs = inc_lu), concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
+    Dict(:alg => KenCarp5(linsolve=KrylovJL_GMRES(; precs = inc_lu), concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
+    Dict(:alg => KenCarp3(linsolve=KrylovJL_GMRES(; precs = w_diag), concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
+    Dict(:alg => KenCarp4(linsolve=KrylovJL_GMRES(; precs = w_diag), concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
+    Dict(:alg => KenCarp5(linsolve=KrylovJL_GMRES(; precs = w_diag), concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
+    Dict(:alg => KenCarp3(linsolve=KrylovJL_GMRES(; precs = amg), concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
+    Dict(:alg => KenCarp4(linsolve=KrylovJL_GMRES(; precs = amg), concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
+    Dict(:alg => KenCarp5(linsolve=KrylovJL_GMRES(; precs = amg), concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),    
+    Dict(:alg => KenCarp3(linsolve=KrylovJL_GMRES(; precs = amg2), concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
+    Dict(:alg => KenCarp4(linsolve=KrylovJL_GMRES(; precs = amg2), concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
+    Dict(:alg => KenCarp5(linsolve=KrylovJL_GMRES(; precs = amg2), concrete_jac = true), :dts => 1e-2 * ones(N), :adaptive => true),
     Dict(:alg => KenCarp3(linsolve=KrylovJL_GMRES()), :dts => 1e-2 * ones(N), :adaptive => true),
     Dict(:alg => KenCarp4(linsolve=KrylovJL_GMRES()), :dts => 1e-2 * ones(N), :adaptive => true),
     Dict(:alg => KenCarp5(linsolve=KrylovJL_GMRES()), :dts => 1e-2 * ones(N), :adaptive => true),

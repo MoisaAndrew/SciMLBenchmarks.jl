@@ -14,9 +14,12 @@ First we will show the full model implementation. It is not necessary to underst
 The model is thus defined as follows:
 
 ```julia
-using OrdinaryDiffEq, OrdinaryDiffEqStabilizedRK, OrdinaryDiffEqLowOrderRK, OrdinaryDiffEqSDIRK
-using ODEInterfaceDiffEq, Sundials, DiffEqDevTools, LSODA, LinearSolve
-using LinearAlgebra, RecursiveFactorization, SciMLLogging, ADTypes
+using OrdinaryDiffEq, ODEInterfaceDiffEq, Sundials, DiffEqDevTools, LSODA, LinearSolve
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExponentialRK, OrdinaryDiffEqExtrapolation,
+    OrdinaryDiffEqFIRK, OrdinaryDiffEqLowOrderRK, OrdinaryDiffEqRosenbrock,
+    OrdinaryDiffEqSDIRK, OrdinaryDiffEqStabilizedRK
+using SciMLLogging, ADTypes
+using LinearAlgebra, RecursiveFactorization
 using Plots
 gr()
 ```
@@ -596,7 +599,7 @@ plot(wp)
 
 In the previous cases the analytical Jacobian is given and is used by the solvers. Now we will solve the same problem without the analytical Jacobian.
 
-Note that the pre-caching means that the model is not compatible with autodifferentiation by ForwardDiff. Thus all of the native Julia solvers are set to `autodiff=false` to use DiffEqDiffTools.jl's numerical differentiation backend. We'll only benchmark the methods that did well before.
+Note that the pre-caching means that the model is not compatible with autodifferentiation by ForwardDiff. Thus all of the native Julia solvers are set to `autodiff=AutoFiniteDiff()` to use DiffEqDiffTools.jl's numerical differentiation backend. We'll only benchmark the methods that did well before.
 
 ```julia
 N=20

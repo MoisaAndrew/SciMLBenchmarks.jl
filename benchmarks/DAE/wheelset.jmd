@@ -40,6 +40,7 @@ in vehicle system dynamics. Surv. Math. Ind., 1:1–37 (1991).
 ```julia
 using OrdinaryDiffEq, DiffEqDevTools, Sundials, ODEInterfaceDiffEq,
       Plots, DASSL, DASKR, ModelingToolkit
+using OrdinaryDiffEqBDF, OrdinaryDiffEqFIRK, OrdinaryDiffEqRosenbrock
 using ModelingToolkit: t_nounits as t, D_nounits as D
 using LinearAlgebra
 ```

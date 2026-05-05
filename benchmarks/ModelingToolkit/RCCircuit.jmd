@@ -11,6 +11,7 @@ runtimes of MTK vs OpenModelica and Dymola.
 ```julia
 using ModelingToolkit, OrdinaryDiffEq, BenchmarkTools,
       ModelingToolkitStandardLibrary, OMJulia, CairoMakie
+using OrdinaryDiffEqRosenbrock
 using ModelingToolkitStandardLibrary.Blocks
 using ModelingToolkitStandardLibrary.Electrical
 ```
@@ -53,7 +54,7 @@ function compile_run_problem(sys, u0, ps; duref = nothing)
     t_fode = time() - t0
     duref === nothing || @assert duref ≈ du
     t_run = @belapsed $ff($du, $u0, $p, 0.0)
-    t_solve = @elapsed sol = solve(prob, Rodas5(autodiff = false))
+    t_solve = @elapsed sol = solve(prob, Rodas5(autodiff = AutoFiniteDiff()))
     @assert SciMLBase.successful_retcode(sol)
     (t_fode, t_run, t_solve), du
 end

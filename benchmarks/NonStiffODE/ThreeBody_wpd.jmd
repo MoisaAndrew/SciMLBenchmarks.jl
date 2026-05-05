@@ -6,6 +6,8 @@ author: Chris Rackauckas
 ```julia
 using OrdinaryDiffEq, ODEInterfaceDiffEq, LSODA, Sundials, DiffEqDevTools, StaticArrays,
       IRKGaussLegendre
+using OrdinaryDiffEqAdamsBashforthMoulton, OrdinaryDiffEqExtrapolation, OrdinaryDiffEqFIRK, OrdinaryDiffEqHighOrderRK, OrdinaryDiffEqLowOrderRK, OrdinaryDiffEqVerner
+using SciMLLogging
 using Plots;
 gr()
 
@@ -68,8 +70,8 @@ See that it's periodic in the chosen timespan:
 
 ```julia
 sol = solve(prob, Vern9(), abstol = 1e-14, reltol = 1e-14)
-@show sol[1] - sol[end]
-@show sol[end] - prob.u0;
+@show sol.u[1] - sol.u[end]
+@show sol.u[end] - prob.u0;
 ```
 
 This three-body problem is known to be a tough problem. Let's see how the algorithms do at standard tolerances.
@@ -144,7 +146,7 @@ plot(wp)
 
 ```julia
 wp = WorkPrecisionSet(probs, abstols, reltols, setups; appxsol = test_sol,
-    dense = false, numruns = 100, verbose = false)
+    dense = false, numruns = 100, verbose = SciMLLogging.None())
 plot(wp)
 ```
 
@@ -206,7 +208,7 @@ solnames = ["Tsit5", "Vern9", "IRKGL16", "IRKGL16 SIMD",
     "AitkenNeville", "Midpoint Deuflhard", "Midpoint Hairer Wanner"]
 wp = WorkPrecisionSet(
     probs, abstols, reltols, setups; appxsol = test_sol, names = solnames,
-    save_everystep = false, verbose = false, numruns = 100)
+    save_everystep = false, verbose = SciMLLogging.None(), numruns = 100)
 plot(wp)
 ```
 
@@ -226,7 +228,7 @@ setups = [Dict(:alg=>ExtrapolationMidpointDeuflhard(
 solnames = ["Deuflhard", "No threads", "standard", "Romberg", "Bulirsch"]
 wp = WorkPrecisionSet(
     probs, abstols, reltols, setups; appxsol = test_sol, names = solnames,
-    save_everystep = false, verbose = false, numruns = 100)
+    save_everystep = false, verbose = SciMLLogging.None(), numruns = 100)
 plot(wp)
 ```
 
@@ -244,7 +246,7 @@ setups = [Dict(:alg=>ExtrapolationMidpointHairerWanner(
 solnames = ["1", "2", "3", "4", "5"]
 wp = WorkPrecisionSet(
     probs, abstols, reltols, setups; appxsol = test_sol, names = solnames,
-    save_everystep = false, verbose = false, numruns = 100)
+    save_everystep = false, verbose = SciMLLogging.None(), numruns = 100)
 plot(wp)
 ```
 

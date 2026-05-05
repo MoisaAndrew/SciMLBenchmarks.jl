@@ -7,6 +7,7 @@ weave_options:
 
 ```julia
 using JumpProcesses, Graphs, Statistics, BenchmarkTools, Plots
+using SciMLLogging
 using OrdinaryDiffEq: Tsit5
 fmt = :png
 width_px, height_px = default(:size);
@@ -409,7 +410,7 @@ if BENCHMARK_PYTHON
             adjacency = [i in j ? α / β : 0.0 for j in g, i in 1:length(u), u in 1:1],
             decays = [β],
             end_time = tspan[2],
-            verbose = false,
+            verbose = SciMLLogging.None(),
             force_simulation = true
         )
         return jprob

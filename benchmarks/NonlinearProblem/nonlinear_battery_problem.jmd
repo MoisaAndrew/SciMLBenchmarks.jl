@@ -24,6 +24,7 @@ Fetch required packages.
 using NonlinearSolve, LinearSolve, StaticArrays, Sundials, SpeedMapping,
       BenchmarkTools, LinearAlgebra, DiffEqDevTools, PolyesterForwardDiff, CairoMakie,
       RecursiveFactorization, Enzyme
+using SciMLLogging
 import MINPACK, NLsolve, PETSc
 import LineSearches
 
@@ -315,7 +316,7 @@ function generate_wpset(prob, solvers)
     return WorkPrecisionSet(prob.prob, abstols, reltols,
         getfield.(successful_solvers, :solver);
         names = getfield.(successful_solvers, :name), numruns = 50, error_estimate = :l∞,
-        maxiters = 10000, verbose = true),
+        maxiters = 10000, verbose = SciMLLogging.Standard()),
     successful_solvers
 end
 ```

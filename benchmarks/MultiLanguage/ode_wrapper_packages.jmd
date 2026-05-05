@@ -31,6 +31,8 @@ More wrappers will continue to be added as necessary.
 ```julia
 using ParameterizedFunctions, MATLABDiffEq, OrdinaryDiffEq,
       ODEInterfaceDiffEq, Plots, Sundials, SciPyDiffEq, deSolveDiffEq
+using OrdinaryDiffEqFIRK, OrdinaryDiffEqLowOrderRK, OrdinaryDiffEqRosenbrock
+using SciMLLogging
 using DiffEqDevTools
 using LinearAlgebra, StaticArrays
 ```
@@ -89,7 +91,7 @@ wp = WorkPrecisionSet([prob, staticprob], abstols, reltols, setups;
     names = labels, print_names = true,
     appxsol = [test_sol, test_sol], dense = false,
     save_everystep = false, numruns = 100, maxiters = 10000000,
-    timeseries_errors = false, verbose = false)
+    timeseries_errors = false, verbose = SciMLLogging.None())
 plot(wp, title = "Non-stiff 1: Lotka-Volterra", legend = :outertopleft,
     color = permutedims([repeat([:LightGreen], 3)..., repeat([:DarkGreen], 3)...,
         :Red, repeat([:Orange], 2)..., repeat([:Yellow], 3)...,
@@ -152,7 +154,7 @@ wp = WorkPrecisionSet([prob, staticprob], abstols, reltols, setups;
     names = labels, print_names = true,
     appxsol = [test_sol, test_sol], dense = false,
     save_everystep = false, numruns = 100, maxiters = 10000000,
-    timeseries_errors = false, verbose = false)
+    timeseries_errors = false, verbose = SciMLLogging.None())
 plot(wp, title = "Non-stiff 2: Rigid-Body", legend = :outertopleft,
     color = permutedims([repeat([:LightGreen], 3)..., repeat([:DarkGreen], 3)...,
         :Red, repeat([:Orange], 2)..., repeat([:Yellow], 3)...,
@@ -214,7 +216,7 @@ labels = ["Julia: Rosenbrock23"
 
 wp = WorkPrecisionSet([prob, staticprob], abstols, reltols, setups;
     names = labels, print_names = true,
-    dense = false, verbose = false,
+    dense = false, verbose = SciMLLogging.None(),
     save_everystep = false, appxsol = [test_sol, test_sol],
     maxiters = Int(1e5))
 plot(wp, title = "Stiff 1: ROBER", legend = :outertopleft,
@@ -287,7 +289,7 @@ labels = ["Julia: Rosenbrock23"
 
 wp = WorkPrecisionSet([prob, staticprob], abstols, reltols, setups;
     names = labels, print_names = true,
-    dense = false, verbose = false,
+    dense = false, verbose = SciMLLogging.None(),
     save_everystep = false, appxsol = [test_sol, test_sol],
     maxiters = Int(1e5), numruns = 100)
 plot(wp, title = "Stiff 2: Hires", legend = :outertopleft,

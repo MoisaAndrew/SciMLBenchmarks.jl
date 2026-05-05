@@ -39,6 +39,7 @@ $$y(t) = \sin(q(t)/2) = k\,\mathrm{sn}(t,k), \quad y_{\max} = k.$$
 # Single pendulums shall be solved numerically.
 #
 using OrdinaryDiffEq, Elliptic, Printf, DiffEqPhysics, Statistics
+using OrdinaryDiffEqSymplecticRK
 
 sol2q(sol) = [sol.u[i][j] for i in 1:length(sol.u), j in 1:(length(sol.u[1]) ÷ 2)]
 function sol2p(sol)

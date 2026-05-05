@@ -31,6 +31,7 @@ system of DAEs and PDEs, Math. Modelling of Systems 2, 1-18 (1996).
 
 ```julia
 using OrdinaryDiffEq, Sundials, DiffEqDevTools, ModelingToolkit, Plots
+using OrdinaryDiffEqRosenbrock
 using LinearAlgebra
 using ModelingToolkit: t_nounits as t, D_nounits as D
 

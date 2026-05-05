@@ -5,6 +5,8 @@ author: Chris Rackauckas
 
 ```julia
 using OrdinaryDiffEq, DiffEqDevTools, Sundials, Plots, ODEInterfaceDiffEq, LSODA
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExtrapolation, OrdinaryDiffEqFIRK, OrdinaryDiffEqRosenbrock, OrdinaryDiffEqSDIRK, OrdinaryDiffEqStabilizedRK
+using SciMLLogging
 using LinearAlgebra, RecursiveFactorization, SparseArrays, Polyester, OrdinaryDiffEqCore
 gr()
 
@@ -181,7 +183,7 @@ setups = [Dict(:alg=>Rosenbrock23()),
           Dict(:alg=>lsoda()),
           Dict(:alg=>RadauIIA5()),
           ]
-wp = WorkPrecisionSet(prob,abstols,reltols,setups;verbose=false,
+wp = WorkPrecisionSet(prob,abstols,reltols,setups;verbose=SciMLLogging.None(),
                       save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 plot(wp)
 ```
@@ -196,7 +198,7 @@ setups = [Dict(:alg=>Rosenbrock23()),
           Dict(:alg=>Rodas4()),
           Dict(:alg=>lsoda()),
           Dict(:alg=>radau())]
-wp = WorkPrecisionSet(prob,abstols,reltols,setups; verbose=false,
+wp = WorkPrecisionSet(prob,abstols,reltols,setups; verbose=SciMLLogging.None(),
                       save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 plot(wp)
 ```
@@ -210,7 +212,7 @@ setups = [Dict(:alg=>Rosenbrock23()),
           Dict(:alg=>ABDF2()),
           Dict(:alg=>FBDF()),
 ]
-wp = WorkPrecisionSet(prob,abstols,reltols,setups; verbose=false,
+wp = WorkPrecisionSet(prob,abstols,reltols,setups; verbose=SciMLLogging.None(),
                       save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 plot(wp)
 ```
@@ -233,7 +235,7 @@ setups = [Dict(:alg=>FBDF()),
           Dict(:alg=>radau()),
           Dict(:alg=>lsoda()),
 ]
-wp = WorkPrecisionSet(prob,abstols,reltols,setups;verbose=false,
+wp = WorkPrecisionSet(prob,abstols,reltols,setups;verbose=SciMLLogging.None(),
                       save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 plot(wp)
 ```
@@ -251,7 +253,7 @@ setups = [Dict(:alg=>Kvaerno4()),
           Dict(:alg=>ImplicitEulerBarycentricExtrapolation()),
           Dict(:alg=>ImplicitHairerWannerExtrapolation()),
           ]
-wp = WorkPrecisionSet(prob,abstols,reltols,setups; verbose=false,
+wp = WorkPrecisionSet(prob,abstols,reltols,setups; verbose=SciMLLogging.None(),
                       save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 plot(wp)
 ```
@@ -285,7 +287,7 @@ setups = [
 solnames = ["CVODE_BDF","KenCarp4","Rodas4","Rodas5P","QNDF","lsoda","radau","seulex","ImplEulerExtpl (threaded)", "ImplEulerExtpl (non-threaded)",
             "ImplEulerBaryExtpl (threaded)","ImplEulerBaryExtpl (non-threaded)","ImplHWExtpl (threaded)","ImplHWExtpl (non-threaded)"]
 
-wp = WorkPrecisionSet(prob,abstols,reltols,setups; verbose=false,
+wp = WorkPrecisionSet(prob,abstols,reltols,setups; verbose=SciMLLogging.None(),
                     names = solnames,save_everystep=false,appxsol=test_sol,maxiters=Int(1e5),numruns=10)
 
 plot(wp, title = "Implicit Methods: Medical Akzo Nobel",legend=:outertopleft,size = (1000,500),

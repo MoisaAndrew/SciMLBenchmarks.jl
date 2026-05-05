@@ -578,7 +578,7 @@ function solve_opf_optimization(dataset; adchoice = Optimization.AutoSparse(Opti
 
     solve_time_with_compilation = @elapsed sol = Optimization.solve(
         prob, Ipopt.Optimizer(), print_level = PRINT_LEVEL, max_cpu_time = MAX_CPU_TIME)
-    cost = sol.minimum
+    cost = sol.objective
     feasible = (sol.retcode == Optimization.SciMLBase.ReturnCode.Success)
     #println(sol.u) # solution vector
 
@@ -800,7 +800,7 @@ function solve_opf_mtk(dataset)
     solve_time_with_compilation = @elapsed sol = OptimizationMOI.solve(prob, Ipopt.Optimizer())
     solve_time_without_compilation = @elapsed sol = OptimizationMOI.solve(prob, Ipopt.Optimizer())
 
-    cost = sol.minimum
+    cost = sol.objective
     feasible = (sol.retcode == Optimization.SciMLBase.ReturnCode.Success)
 
     return (prob, sol),

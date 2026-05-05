@@ -26,6 +26,7 @@ The spatial derivative operators are represented via finite difference approxima
 
 ```julia
 using OrdinaryDiffEq
+using OrdinaryDiffEqBDF, OrdinaryDiffEqExponentialRK, OrdinaryDiffEqFIRK, OrdinaryDiffEqIMEXMultistep, OrdinaryDiffEqSDIRK
 using DiffEqDevTools
 using SciMLOperators
 using LinearSolve
@@ -72,7 +73,7 @@ N = 128  # Number of grid points
 L = 16.0  # Domain length
 alpha = 30.0 # Time scaling factor
 xs, prob = kuramoto_sivashinsky(N, L, alpha)
-@time sol = solve(prob, RadauIIA5(autodiff=false); dt = 1e-4, abstol=1e-14, reltol=1e-14, adaptive=true)
+@time sol = solve(prob, RadauIIA5(autodiff=AutoFiniteDiff()); dt = 1e-4, abstol=1e-14, reltol=1e-14, adaptive=true)
 
 test_sol = TestSolution(sol);
 

@@ -45,6 +45,7 @@ algebraic equations. IMM-DTU, Tech. Report (1999). Available at the
 ```julia
 using OrdinaryDiffEq, DiffEqDevTools, Sundials, ModelingToolkit,
       ODEInterfaceDiffEq, Plots, DASKR
+using OrdinaryDiffEqBDF, OrdinaryDiffEqFIRK, OrdinaryDiffEqRosenbrock
 using ModelingToolkit: t_nounits as t, D_nounits as D
 using LinearAlgebra, Statistics
 ```
